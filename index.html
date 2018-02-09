@@ -6,20 +6,14 @@
     </head>
     <body>
         <main>
-            <select id="dropSeries" name="Series">
-                <option selected>Select a TV Show</option>
+            <select id="selectedMedia" name="selectedMedia">
+                <option value="selected">Select a Movie or TV show</option>
+                <optgroup id="movies" label="Movies"></optgroup>
+                <optgroup id="shows" label="Shows"></optgroup>
             </select>
-            <div id="seriesInfo">
-
-            </div>
             <br>
-            <select id="dropMovies" name="Movies">
-                <option selected>Select a Movie</option>
-            </select>
-            <div id="moviesInfo">
-
-            </div>
-
+            <form id="seriesInfo" action="index.html" method="post">
+            </form>
         </main>
     </body>
     <script src="app.js"></script>
