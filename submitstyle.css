@@ -1,0 +1,5 @@
+main, head, h1 #seriesInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
