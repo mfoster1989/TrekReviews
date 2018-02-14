@@ -1,6 +1,9 @@
 const baseUrlMovies = "	http://stapi.co/api/v1/rest/movie/search"
 const baseUrlSeries = "	http://stapi.co/api/v1/rest/season/search"
 
+fetchSeriesData()
+fetchMovieData()
+
 document.getElementById("selectedMedia").addEventListener("change", populateSeriesInfo)
 
 function fetchSeriesData() {
@@ -21,7 +24,6 @@ function createSeriesDropdown(response) {
         let option = document.createElement("option")
         option.innerHTML = seasons.series.title + " Season " + seasons.seasonNumber
         drop.appendChild(option)
-        option.addEventListener("click", populateSeriesInfo)
     })
 }
 
@@ -31,7 +33,6 @@ function createMoviesDropdown(movies) {
         let option = document.createElement("option")
         option.innerHTML = movies.title
         drop.appendChild(option)
-
     })
 }
 
@@ -49,6 +50,3 @@ function populateSeriesInfo(series) {
     submit.value = "Submit Review!"
     form.appendChild(submit)
 }
-
-fetchSeriesData()
-fetchMovieData()
