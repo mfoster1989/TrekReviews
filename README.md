@@ -15,3 +15,12 @@ Ever wanted to leave a review of a Star Trek movie?  Now is your chance!
 ![Comment](https://user-images.githubusercontent.com/30170592/38263770-312530d4-372e-11e8-8803-cf48cf5b60e0.png)
 
 4. Submit!
+
+
+### To work locally
+
+1. Fork the repo
+2. Clone the repo
+3. Run the command `$ npm install` inside the project folder.
+
+Copyright 2018 Malcolm Foster.  License MIT
