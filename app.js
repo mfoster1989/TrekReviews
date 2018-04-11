@@ -50,3 +50,22 @@ function populateSeriesInfo(series) {
     submit.value = "Submit Review!"
     form.appendChild(submit)
 }
+
+function getFormData() {
+    const data = new FormData(document.querySelector("form"));
+    return {
+        comments: data.get("comments"),
+    };  
+}
+
+function saveReview() {
+    return fetch(`${baseUrlMovies}`, {
+        method: "POST",
+        headers: new Headers({
+            "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(getFormData())
+    }).then(response => response.json())
+        .then(response => response.message)
+        .catch(console.error);
+}
