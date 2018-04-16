@@ -1,8 +1,12 @@
 const baseUrlMovies = "	http://stapi.co/api/v1/rest/movie/search"
 const baseUrlSeries = "	http://stapi.co/api/v1/rest/season/search"
+const reviewDbURL = "https://trekreviewsserver.herokuapp.com/comments"
+
 
 fetchSeriesData()
 fetchMovieData()
+fetchReviews()
+saveReview()
 
 document.getElementById("selectedMedia").addEventListener("change", populateSeriesInfo)
 
@@ -16,6 +20,12 @@ function fetchMovieData() {
     return fetch(baseUrlMovies)
         .then(response => response.json())
         .then(createMoviesDropdown)
+}
+
+function fetchReviews() {
+    return fetch(reviewDbURL)
+        .then(response => response.json())
+        .then(populateReviews)
 }
 
 function createSeriesDropdown(response) {
@@ -36,6 +46,10 @@ function createMoviesDropdown(movies) {
     })
 }
 
+function populateReviews(reviews) {
+    let reviewsDiv = document.getElementById("submittedReviews")
+}   reviews.comments
+
 function populateSeriesInfo(series) {
     let form = document.querySelector("#seriesInfo")
     form.innerHTML = ""
@@ -51,21 +65,32 @@ function populateSeriesInfo(series) {
     form.appendChild(submit)
 }
 
-function getFormData() {
-    const data = new FormData(document.querySelector("form"));
-    return {
-        comments: data.get("comments"),
-    };  
+function saveReview() {
+    let submitButton = document.querySelector("button")
+    submitButton.addEventListener("click", (lgm) => {
+        lgm.preventDefault()
+        let formData = new FormData(document.querySelector("form"))
+        let data = {
+            medium: choice.value,
+            comments: formData.get("comments"),
+        }
+        fetch(reviewDbURL, {
+            method: "POST",
+            headers: new Headers({
+                "Content-Type": "application/json"
+            }),
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(response => {
+            showReview(response, data)
+        })
+        .catch(console.error);
+    })
 }
 
-function saveReview() {
-    return fetch(`${baseUrlMovies}`, {
-        method: "POST",
-        headers: new Headers({
-            "Content-Type": "application/json"
-        }),
-        body: JSON.stringify(getFormData())
-    }).then(response => response.json())
-        .then(response => response.message)
-        .catch(console.error);
+showReview(response, data) {
+    document.querySelector("#media").innerHTML = data.medium
+    document.querySelector("#review").innerHTML = data.comments
 }
+
