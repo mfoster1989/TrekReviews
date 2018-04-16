@@ -78,8 +78,8 @@ function saveReview(event) {
     event.preventDefault()
     let formData = new FormData(document.querySelector("form"))
     let data = {
-        // media: formData.get(select.value)
-        media: select.value,
+        // furture note, .input
+        media: formData.get("selectedMedia"),
         comments: formData.get("comments")
     }
     fetch(reviewDbURL, {
