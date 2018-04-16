@@ -16,6 +16,8 @@ Ever wanted to leave a review of a Star Trek movie?  Now is your chance!
 
 4. Submit!
 
+To view your comment, referesh the page
+
 
 ### To work locally
 
